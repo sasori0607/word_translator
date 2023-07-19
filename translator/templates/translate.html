@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/translate.css' %}">
+</head>
+<body>
+    <form id="translate-form">
+        {% csrf_token %}
+        <div class="translate-container">
+            <div class="header">
+                <div class="title">ПЕРЕКЛАДАЧ СЛІВ</div>
+            </div>
+            <div class="input-container">
+                <textarea class="input-text" id="text-input" placeholder="Введіть текст"></textarea>
+                <div class="language-select-container">
+                    <select class="language-select" name="src_lang" id="src-lang-select" onchange="updateDestinationLanguages()">
+                        <option value="">З якої мови перекладаємо</option>
+                        <option value="1049">Російська</option>
+                        <option value="1033">Англійська</option>
+                        <option value="1031">Німецька</option>
+                    </select>
+                    <div class="language-arrow"></div>
+                    <select class="language-select" name="dst_lang" id="dst-lang-select">
+                        <option value="">На яку перекладаємо</option>
+                    </select>
+                </div>
+            </div>
+            <div class="translation-output-container">
+                <textarea class="output-text" id="translation-output" readonly></textarea>
+            </div>
+            <div class="translate-button-container">
+                <button class="translate-button" type="submit">Перевести</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/translate.js' %}"></script>
